@@ -1,0 +1,6 @@
+inotify extension
+================
+
+This extension exposes the inotify API and some additional functions.
+See inotify.php for details and examples.
+
