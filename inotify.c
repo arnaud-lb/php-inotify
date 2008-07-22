@@ -127,7 +127,7 @@ PHP_MINFO_FUNCTION(inotify)
 }
 /* }}} */
 
-static int php_inotify_queue_len(const int fd) /* {{{ */
+static int php_inotify_queue_len(const int fd TSRMLS_DC) /* {{{ */
 {
 	int ret;
 	int queue_len;
@@ -253,7 +253,7 @@ PHP_FUNCTION(inotify_queue_len)
 	php_stream_from_zval(stream, &zstream);
 	INOTIFY_FD(stream, fd);
 
-	queue_len = php_inotify_queue_len(fd);
+	queue_len = php_inotify_queue_len(fd TSRMLS_CC);
 
 	RETURN_LONG(queue_len);
 }
@@ -279,7 +279,7 @@ PHP_FUNCTION(inotify_read)
 	php_stream_from_zval(stream, &zstream);
 	INOTIFY_FD(stream, fd);
 
-	readbuf_size = (double) php_inotify_queue_len(fd) * 1.6;
+	readbuf_size = (double) php_inotify_queue_len(fd TSRMLS_CC) * 1.6;
 	if (readbuf_size < 1) {
 		readbuf_size = sizeof(struct inotify_event) + 32;
 	}
