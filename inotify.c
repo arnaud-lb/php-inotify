@@ -160,7 +160,7 @@ PHP_FUNCTION(inotify_init)
 	}
 
 	stream = php_stream_fopen_from_fd(fd, "r", NULL);
-	stream->flags |= PHP_STREAM_FLAG_NO_SEEK | PHP_STREAM_FLAG_FCLOSE;
+	stream->flags |= PHP_STREAM_FLAG_NO_SEEK;
 
 	php_stream_to_zval(stream, return_value);
 }

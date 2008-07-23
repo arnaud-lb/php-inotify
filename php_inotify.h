@@ -42,10 +42,6 @@ PHP_FUNCTION(inotify_read);
 
 #define PHP_INOTIFY_VERSION "0.1.1"
 
-#ifndef PHP_STREAM_FLAG_FCLOSE
-# define PHP_STREAM_FLAG_FCLOSE 0
-#endif
-
 #define INOTIFY_BUF_TOO_SMALL(ret,errno) \
 	((ret) == 0 || ((ret) == -1 && (errno) == EINVAL))
 #define INOTIFY_FD(stream, fd) \
