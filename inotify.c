@@ -31,29 +31,24 @@
 #include "php_inotify.h"
 
 /* {{{ arginfo */
-static
 ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_init, 0, ZEND_RETURN_VALUE, 0)
 ZEND_END_ARG_INFO()
 
-static
 ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_add_watch, 0, ZEND_RETURN_VALUE, 3)
 	ZEND_ARG_INFO(0, inotify_instance)
 	ZEND_ARG_INFO(0, pathname)
 	ZEND_ARG_INFO(0, mask)
 ZEND_END_ARG_INFO()
 
-static
 ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_rm_watch, 0, ZEND_RETURN_VALUE, 2)
 	ZEND_ARG_INFO(0, inotify_instance)
 	ZEND_ARG_INFO(0, mask)
 ZEND_END_ARG_INFO()
 
-static
 ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_queue_len, 0, ZEND_RETURN_VALUE, 1)
 	ZEND_ARG_INFO(0, inotify_instance)
 ZEND_END_ARG_INFO()
 
-static
 ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_read, 0, ZEND_RETURN_VALUE, 1)
 	ZEND_ARG_INFO(0, inotify_instance)
 ZEND_END_ARG_INFO()
