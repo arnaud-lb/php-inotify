@@ -6,13 +6,13 @@
  <description>The inotify extension allows to use inotify functions in a PHP script.</description>
  <lead>
   <name>Arnaud Le Blanc</name>
-  <user>lbarnaud</user>
+  <user>lbarnaud2</user>
   <email>arnaud.lb@gmail.com</email>
   <active>yes</active>
  </lead>
- 
- <date>2008-07-17</date>
- <version><release>0.1.1</release><api>0.1.1</api></version>
+
+ <date>2008-10-22</date>
+ <version><release>0.1.2</release><api>0.1.2</api></version>
  <stability><release>beta</release><api>beta</api></stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
@@ -53,11 +53,11 @@
 
  <changelog>
   <release>
-   <date>2008-07-17</date>
-   <version><release>0.1.1</release><api>0.1.1</api></version>
+   <date>2008-10-22</date>
+   <version><release>0.1.2</release><api>0.1.2</api></version>
    <stability><release>beta</release><api>beta</api></stability>
    <notes>
-Initial release
+* Initial release
    </notes>
   </release>
  </changelog>
