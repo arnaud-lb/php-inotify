@@ -30,6 +30,35 @@
 #include "ext/standard/info.h"
 #include "php_inotify.h"
 
+/* {{{ arginfo */
+static
+ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_init, 0, ZEND_RETURN_VALUE, 0)
+ZEND_END_ARG_INFO()
+
+static
+ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_add_watch, 0, ZEND_RETURN_VALUE, 3)
+	ZEND_ARG_INFO(0, inotify_instance)
+	ZEND_ARG_INFO(0, pathname)
+	ZEND_ARG_INFO(0, mask)
+ZEND_END_ARG_INFO()
+
+static
+ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_rm_watch, 0, ZEND_RETURN_VALUE, 2)
+	ZEND_ARG_INFO(0, inotify_instance)
+	ZEND_ARG_INFO(0, mask)
+ZEND_END_ARG_INFO()
+
+static
+ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_queue_len, 0, ZEND_RETURN_VALUE, 1)
+	ZEND_ARG_INFO(0, inotify_instance)
+ZEND_END_ARG_INFO()
+
+static
+ZEND_BEGIN_ARG_INFO_EX(arginfo_inotify_read, 0, ZEND_RETURN_VALUE, 1)
+	ZEND_ARG_INFO(0, inotify_instance)
+ZEND_END_ARG_INFO()
+/* }}} */
+
 /* {{{ inotify_functions[]
  */
 #if ZEND_MODULE_API_NO >= 20071006
@@ -37,11 +66,11 @@ const
 #endif
 zend_function_entry inotify_functions[] = {
 
-	PHP_FE(inotify_init,			NULL)
-	PHP_FE(inotify_add_watch,		NULL)
-	PHP_FE(inotify_rm_watch,		NULL)
-	PHP_FE(inotify_queue_len,		NULL)
-	PHP_FE(inotify_read,			NULL)
+	PHP_FE(inotify_init,			arginfo_inotify_init)
+	PHP_FE(inotify_add_watch,		arginfo_inotify_add_watch)
+	PHP_FE(inotify_rm_watch,		arginfo_inotify_rm_watch)
+	PHP_FE(inotify_queue_len,		arginfo_inotify_queue_len)
+	PHP_FE(inotify_read,			arginfo_inotify_read)
 	{NULL, NULL, NULL}	/* Must be the last line in inotify_functions[] */
 };
 /* }}} */
