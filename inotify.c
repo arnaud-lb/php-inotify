@@ -205,9 +205,11 @@ PHP_FUNCTION(inotify_add_watch)
 		return;
 	}
 
+#if PHP_VERSION_ID < 50399
 	if (PG(safe_mode) && (!php_checkuid(pathname, NULL, CHECKUID_ALLOW_FILE_NOT_EXISTS))) {
 		RETURN_FALSE;
 	}
+#endif
 	if (php_check_open_basedir(pathname TSRMLS_CC)) {
 		RETURN_FALSE;
 	}
