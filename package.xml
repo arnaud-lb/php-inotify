@@ -10,13 +10,14 @@
   <email>arnaud.lb@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2012-03-05</date>
+ <date>2012-05-04</date>
  <time>16:08:26</time>
- <version><release>0.1.5</release><api>0.1.2</api></version>
- <stability><release>beta</release><api>beta</api></stability>
+ <version><release>0.1.6</release><api>0.1.2</api></version>
+ <stability><release>stable</release><api>stable</api></stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-  * PHP 5.4 compatibility
+  * Repackage
+  * Stable
  </notes>
 
  <contents>
@@ -50,6 +51,15 @@
  <extsrcrelease />
 
  <changelog>
+  <release>
+   <date>2012-03-05</date>
+   <time>16:08:26</time>
+   <version><release>0.1.5</release><api>0.1.2</api></version>
+   <stability><release>beta</release><api>beta</api></stability>
+   <notes>
+* PHP 5.4 compatibility
+   </notes>
+  </release>
   <release>
    <date>2009-05-19</date>
    <version><release>0.1.4</release><api>0.1.2</api></version>
