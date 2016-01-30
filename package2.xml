@@ -3,46 +3,44 @@
  <name>inotify</name>
  <channel>pecl.php.net</channel>
  <summary>Inotify</summary>
- <description>The inotify extension allows to use inotify functions in a PHP script.</description>
+ <description>Inotify bindings for PHP</description>
  <lead>
   <name>Arnaud Le Blanc</name>
-  <user>lbarnaud2</user>
+  <user>lbarnaud</user>
   <email>arnaud.lb@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2012-05-04</date>
- <time>16:08:26</time>
+ <date>2016-01-30</date>
+ <time>14:00:00</time>
 <!--
 	Remember to change PHP_INOTIFY_VERSION in php_inotify.h
 	Before release
 -->
- <version><release>0.1.6</release><api>0.1.2</api></version>
+ <version><release>2.0.0</release><api>0.1.2</api></version>
  <stability><release>stable</release><api>stable</api></stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-  * Repackage
-  * Stable
+  * PHP 7 compatible release
  </notes>
-
  <contents>
   <dir name="/">
-   <file md5sum="b904d6d0d966d04080282d473aec742c" name="tests/002.phpt" role="test" />
-   <file md5sum="9503bc24ddc39eeeb67ef95304aab132" name="CREDITS" role="doc" />
-   <file md5sum="d41d8cd98f00b204e9800998ecf8427e" name="EXPERIMENTAL" role="doc" />
-   <file md5sum="0e964e9273c606c46afbd311b5ad4d77" name="LICENSE" role="doc" />
-   <file md5sum="9477c6c5c484ea6ea0d2560369834cc5" name="README" role="doc" />
-   <file md5sum="39ace1fca0cee429ed75d091f05fdd4c" name="inotify.c" role="src" />
-   <file md5sum="b38a0d7fd79b506230863b9c90248849" name="php_inotify.h" role="src" />
-   <file md5sum="7139989be35321fc2391b02e127398b0" name="config.m4" role="src" />
-   <file md5sum="155f6c7316cff3f12da669b81ee0f16c" name="inotify.php" role="php" />
-   <file md5sum="23a36451db200914675821bf1fac2f57" name="tail.php" role="php" />
+   <file name="tests/002.phpt" role="test" />
+   <file name="CREDITS" role="doc" />
+   <file name="EXPERIMENTAL" role="doc" />
+   <file name="LICENSE" role="doc" />
+   <file name="README" role="doc" />
+   <file name="inotify.c" role="src" />
+   <file name="php_inotify.h" role="src" />
+   <file name="config.m4" role="src" />
+   <file name="inotify.php" role="php" />
+   <file name="tail.php" role="php" />
   </dir>
  </contents>
 
  <dependencies>
    <required>
      <php>
-       <min>5.2.0</min>
+       <min>7.0.0</min>
      </php>
      <pearinstaller>
        <min>1.4.0</min>
@@ -55,6 +53,17 @@
  <extsrcrelease />
 
  <changelog>
+  <release>
+   <date>2012-05-04</date>
+   <time>16:08:26</time>
+   <version><release>0.1.6</release><api>0.1.2</api></version>
+   <stability><release>stable</release><api>stable</api></stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+    * Repackage
+    * Stable
+   </notes>
+  </release>
   <release>
    <date>2012-03-05</date>
    <time>16:08:26</time>
