@@ -1,8 +1,8 @@
 /*
   +----------------------------------------------------------------------+
-  | PHP Version 5                                                        |
+  | inotify                                                              |
   +----------------------------------------------------------------------+
-  | Copyright (c) 1997-2008 The PHP Group                                |
+  | Copyright (c) 1997-2016 The PHP Group                                |
   +----------------------------------------------------------------------+
   | This source file is subject to version 3.01 of the PHP license,      |
   | that is bundled with this package in the file LICENSE, and is        |
@@ -15,8 +15,6 @@
   | Author: Arnaud Le Blanc <arnaud.lb@gmail.com>                        |
   +----------------------------------------------------------------------+
 */
-
-/* $Id$ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -197,7 +195,7 @@ PHP_FUNCTION(inotify_add_watch)
 	zval *zstream;
 	php_stream *stream;
 	char *pathname;
-	int pathname_len;
+	size_t pathname_len;
 	long mask, wd;
 	int fd;
 
@@ -205,16 +203,11 @@ PHP_FUNCTION(inotify_add_watch)
 		return;
 	}
 
-#if PHP_VERSION_ID < 50399
-	if (PG(safe_mode) && (!php_checkuid(pathname, NULL, CHECKUID_ALLOW_FILE_NOT_EXISTS))) {
-		RETURN_FALSE;
-	}
-#endif
 	if (php_check_open_basedir(pathname TSRMLS_CC)) {
 		RETURN_FALSE;
 	}
 
-	php_stream_from_zval(stream, &zstream);
+	php_stream_from_zval(stream, zstream);
 	INOTIFY_FD(stream, fd);
 
 	wd = inotify_add_watch(fd, pathname, mask);
@@ -248,7 +241,7 @@ PHP_FUNCTION(inotify_rm_watch)
 		return;
 	}
 
-	php_stream_from_zval(stream, &zstream);
+	php_stream_from_zval(stream, zstream);
 	INOTIFY_FD(stream, fd);
 
 	if (inotify_rm_watch(fd, wd) == -1) {
@@ -276,7 +269,7 @@ PHP_FUNCTION(inotify_queue_len)
 		return;
 	}
 
-	php_stream_from_zval(stream, &zstream);
+	php_stream_from_zval(stream, zstream);
 	INOTIFY_FD(stream, fd);
 
 	queue_len = php_inotify_queue_len(fd TSRMLS_CC);
@@ -295,14 +288,14 @@ PHP_FUNCTION(inotify_read)
 	size_t readbuf_size = 0;
 	ssize_t readden, i;
 	struct inotify_event *event;
-	zval *event_ary;
+	zval event_ary;
 	int fd;
 
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "r", &zstream) == FAILURE) {
 		return;
 	}
 
-	php_stream_from_zval(stream, &zstream);
+	php_stream_from_zval(stream, zstream);
 	INOTIFY_FD(stream, fd);
 
 	readbuf_size = (double) php_inotify_queue_len(fd TSRMLS_CC) * 1.6;
@@ -334,14 +327,13 @@ PHP_FUNCTION(inotify_read)
 	for(i = 0; i < readden; i += sizeof(struct inotify_event) + event->len) {
 		event = (struct inotify_event *)&readbuf[i];
 
-		ALLOC_INIT_ZVAL(event_ary);
-		array_init(event_ary);
-		add_assoc_long(event_ary, "wd", event->wd);
-		add_assoc_long(event_ary, "mask", event->mask);
-		add_assoc_long(event_ary, "cookie", event->cookie);
-		add_assoc_string(event_ary, "name", (event->len > 0 ? event->name : ""), 1);
+		array_init(&event_ary);
+		add_assoc_long(&event_ary, "wd", event->wd);
+		add_assoc_long(&event_ary, "mask", event->mask);
+		add_assoc_long(&event_ary, "cookie", event->cookie);
+		add_assoc_string(&event_ary, "name", (event->len > 0 ? event->name : ""));
 
-		add_next_index_zval(return_value, event_ary);
+		add_next_index_zval(return_value, &event_ary);
 	}
 	efree(readbuf);
 }
