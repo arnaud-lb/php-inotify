@@ -73,11 +73,11 @@ PHP_FUNCTION(inotify_read);
 
 #define INOTIFY_ERROR_CASE(func, errno) \
 	case (errno): \
-		php_error_docref(NULL TSRMLS_CC, E_WARNING, INOTIFY_##func##_##errno); \
+		php_error_docref(NULL, E_WARNING, INOTIFY_##func##_##errno); \
 		break;
 #define INOTIFY_DEFAULT_ERROR(errno) \
 	default: \
-		php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s", strerror(errno)); \
+		php_error_docref(NULL, E_WARNING, "%s", strerror(errno)); \
 		break;
 
 

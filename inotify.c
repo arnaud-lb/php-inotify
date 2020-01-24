@@ -149,14 +149,14 @@ PHP_MINFO_FUNCTION(inotify)
 }
 /* }}} */
 
-static int php_inotify_queue_len(const int fd TSRMLS_DC) /* {{{ */
+static int php_inotify_queue_len(const int fd) /* {{{ */
 {
 	int ret;
 	int queue_len;
 
 	ret = ioctl(fd, FIONREAD, &queue_len);
 	if (ret < 0) {
-		php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s", strerror(errno));
+		php_error_docref(NULL, E_WARNING, "%s", strerror(errno));
 		return 0;
 	}
 	return queue_len;
@@ -199,11 +199,11 @@ PHP_FUNCTION(inotify_add_watch)
 	long mask, wd;
 	int fd;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "rsl", &zstream, &pathname, &pathname_len, &mask) == FAILURE) {
+	if (zend_parse_parameters(ZEND_NUM_ARGS(), "rsl", &zstream, &pathname, &pathname_len, &mask) == FAILURE) {
 		return;
 	}
 
-	if (php_check_open_basedir(pathname TSRMLS_CC)) {
+	if (php_check_open_basedir(pathname)) {
 		RETURN_FALSE;
 	}
 
@@ -237,7 +237,7 @@ PHP_FUNCTION(inotify_rm_watch)
 	int fd;
 	long wd;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "rl", &zstream, &wd) == FAILURE) {
+	if (zend_parse_parameters(ZEND_NUM_ARGS(), "rl", &zstream, &wd) == FAILURE) {
 		return;
 	}
 
@@ -265,14 +265,14 @@ PHP_FUNCTION(inotify_queue_len)
 	int fd;
 	long queue_len;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "r", &zstream) == FAILURE) {
+	if (zend_parse_parameters(ZEND_NUM_ARGS(), "r", &zstream) == FAILURE) {
 		return;
 	}
 
 	php_stream_from_zval(stream, zstream);
 	INOTIFY_FD(stream, fd);
 
-	queue_len = php_inotify_queue_len(fd TSRMLS_CC);
+	queue_len = php_inotify_queue_len(fd);
 
 	RETURN_LONG(queue_len);
 }
@@ -291,14 +291,14 @@ PHP_FUNCTION(inotify_read)
 	zval event_ary;
 	int fd;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "r", &zstream) == FAILURE) {
+	if (zend_parse_parameters(ZEND_NUM_ARGS(), "r", &zstream) == FAILURE) {
 		return;
 	}
 
 	php_stream_from_zval(stream, zstream);
 	INOTIFY_FD(stream, fd);
 
-	readbuf_size = (double) php_inotify_queue_len(fd TSRMLS_CC) * 1.6;
+	readbuf_size = (double) php_inotify_queue_len(fd) * 1.6;
 	if (readbuf_size < 1) {
 		readbuf_size = sizeof(struct inotify_event) + 32;
 	}
@@ -315,7 +315,7 @@ PHP_FUNCTION(inotify_read)
 			continue;
 		} else if (readden < 0) {
 			if (errno != EAGAIN) {
-				php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s", strerror(errno));
+				php_error_docref(NULL, E_WARNING, "%s", strerror(errno));
 			}
 			efree(readbuf);
 			RETURN_FALSE;
