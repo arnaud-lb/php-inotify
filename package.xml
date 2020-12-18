@@ -10,30 +10,32 @@
   <email>arnaud.lb@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2016-01-30</date>
+ <date>2020-12-18</date>
  <time>14:00:00</time>
 <!--
 	Remember to change PHP_INOTIFY_VERSION in php_inotify.h
 	Before release
 -->
- <version><release>2.0.0</release><api>0.1.2</api></version>
+ <version><release>3.0.0</release><api>0.1.2</api></version>
  <stability><release>stable</release><api>stable</api></stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-  * PHP 7 compatible release
+  * PHP 8 compatible release
  </notes>
  <contents>
   <dir name="/">
-   <file name="tests/002.phpt" role="test" />
    <file name="CREDITS" role="doc" />
    <file name="EXPERIMENTAL" role="doc" />
    <file name="LICENSE" role="doc" />
-   <file name="README" role="doc" />
+   <file name="README.md" role="doc" />
    <file name="inotify.c" role="src" />
    <file name="php_inotify.h" role="src" />
    <file name="config.m4" role="src" />
    <file name="inotify.php" role="php" />
    <file name="tail.php" role="php" />
+   <dir name="tests">
+    <file name="002.phpt" role="test" />
+   </dir>
   </dir>
  </contents>
 
@@ -53,6 +55,16 @@
  <extsrcrelease />
 
  <changelog>
+  <release>
+   <date>2016-01-30</date>
+   <time>14:00:00</time>
+   <version><release>2.0.0</release><api>0.1.2</api></version>
+   <stability><release>stable</release><api>stable</api></stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+    * PHP 7 compatible release
+   </notes>
+  </release>
   <release>
    <date>2012-05-04</date>
    <time>16:08:26</time>

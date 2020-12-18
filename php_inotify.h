@@ -40,7 +40,7 @@ PHP_FUNCTION(inotify_rm_watch);
 PHP_FUNCTION(inotify_queue_len);
 PHP_FUNCTION(inotify_read);
 
-#define PHP_INOTIFY_VERSION "2.0.0"
+#define PHP_INOTIFY_VERSION "3.0.0"
 
 #define INOTIFY_BUF_TOO_SMALL(ret,errno) \
 	((ret) == 0 || ((ret) == -1 && (errno) == EINVAL))
