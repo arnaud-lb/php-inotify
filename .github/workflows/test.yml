@@ -1,0 +1,44 @@
+name: 'Tests'
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+jobs:
+    tests:
+        name: 'Tests'
+        strategy:
+          matrix:
+            php: ['8.0.0', '7.4.0', '7.3.0', '7.2.0', '7.1.0', '7.0.0']
+            os: ['ubuntu-20.04', 'ubuntu-16.04']
+            include:
+              - php: '7.4.0'
+                os: 'ubuntu-16.04'
+                memcheck: '1'
+
+        runs-on: ${{ matrix.os }}
+        continue-on-error: ${{ !!matrix.experimental }}
+        env:
+            PHP_VERSION: ${{ matrix.php }}
+            MEMORY_CHECK: ${{ matrix.memcheck }}
+        steps:
+            - name: 'Check out repository'
+              uses: 'actions/checkout@v2'
+              with:
+                  path: 'php-inotify'
+
+            - uses: actions/cache@v2
+              with:
+                  path: ~/build-cache/php
+                  key: ${{ matrix.os }}-${{ matrix.php }}-${{ matrix.memcheck }}
+
+            - name: 'Build PHP'
+              run: './php-inotify/.github/workflows/test/build-php.sh'
+
+            - name: 'Build php-inotify'
+              run: './php-inotify/.github/workflows/test/build-php-inotify.sh'
+
+            - name: 'Run tests'
+              run: './php-inotify/.github/workflows/test/tests.sh'
