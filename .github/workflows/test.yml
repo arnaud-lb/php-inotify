@@ -25,11 +25,11 @@ jobs:
             MEMORY_CHECK: ${{ matrix.memcheck }}
         steps:
             - name: 'Check out repository'
-              uses: 'actions/checkout@v2'
+              uses: 'actions/checkout@v4'
               with:
                   path: 'php-inotify'
 
-            - uses: actions/cache@v2
+            - uses: actions/cache@v4
               with:
                   path: ~/build-cache/php
                   key: ${{ matrix.os }}-${{ matrix.php }}-${{ matrix.memcheck }}
