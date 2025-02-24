@@ -6,7 +6,7 @@ cd ext
 
 echo "Checking version consistency"
 
-CODE_VERSION="$(grep PHP_MEMPROF_VERSION php_inotify.h|cut -d'"' -f2)"
+CODE_VERSION="$(grep PHP_INOTIFY_VERSION php_inotify.h|cut -d'"' -f2)"
 PACKAGE_VERSION="$(grep -m 1 '<release>' package.xml|cut -d'>' -f2|cut -d'<' -f1)"
 
 if ! [ "$CODE_VERSION" = "$PACKAGE_VERSION" ]; then
