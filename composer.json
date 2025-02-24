@@ -1,0 +1,12 @@
+{
+    "name": "arnaud-lb/inotify",
+    "type": "php-ext",
+    "license": "MIT",
+    "description": "Inotify bindings for PHP",
+    "require": {
+        "php": ">= 8.1.0"
+    },
+    "php-ext": {
+        "extension-name": "inotify"
+    }
+}
