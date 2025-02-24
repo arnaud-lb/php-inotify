@@ -6,9 +6,32 @@ This extension exposes the inotify API and some additional functions.
 
 ## Install
 
-* PHP 8: pecl install inotify
-* PHP 7: pecl install inotify
-* PHP 5: pecl install inotify-0.1.6
+### Installing with [PIE](https://github.com/php/pie)
+
+    pie install arnaud-lb/inofity
+
+### Installing with PECL
+
+    pecl install memprof
+
+### Installing manually
+
+Download the source and run the following commands in the source directory:
+
+    phpize
+    ./configure
+    make
+    make install
+
+## Loading the extension
+
+The extension can be loaded on the command line, just for one script:
+
+    php -dextension=inofity.so script.php
+
+Or permanently, in php.ini:
+
+    extension=inotify.so
 
 ## Documentation
 
