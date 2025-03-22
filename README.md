@@ -8,7 +8,7 @@ This extension exposes the inotify API and some additional functions.
 
 ### Installing with [PIE](https://github.com/php/pie)
 
-    pie install arnaud-lb/inofity
+    pie install arnaud-lb/inotify
 
 ### Installing with PECL
 
@@ -27,7 +27,7 @@ Download the source and run the following commands in the source directory:
 
 The extension can be loaded on the command line, just for one script:
 
-    php -dextension=inofity.so script.php
+    php -dextension=inotify.so script.php
 
 Or permanently, in php.ini:
 
