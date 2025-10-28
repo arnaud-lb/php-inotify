@@ -12,7 +12,7 @@ This extension exposes the inotify API and some additional functions.
 
 ### Installing with PECL
 
-    pecl install memprof
+    pecl install inotify
 
 ### Installing manually
 
