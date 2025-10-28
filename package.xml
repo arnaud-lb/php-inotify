@@ -23,6 +23,7 @@
  <stability><release>stable</release><api>stable</api></stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
+  * Add support for IN_EXCL_UNLINK flag (#9, @realFlowControl)
   * Add support for PIE
  </notes>
  <contents>
