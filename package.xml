@@ -10,7 +10,7 @@
   <email>arnaud.lb@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2025-02-24</date>
+ <date>2025-10-28</date>
  <time>14:00:00</time>
 <!--
 	Remember to change PHP_INOTIFY_VERSION in php_inotify.h
@@ -25,6 +25,8 @@
  <notes>
   * Add support for IN_EXCL_UNLINK flag (#9, @realFlowControl)
   * Add support for PIE
+
+  This is the last release on PECL: Please use PIE instead.
  </notes>
  <contents>
   <dir name="/">
